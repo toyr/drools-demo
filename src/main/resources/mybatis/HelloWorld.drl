@@ -1,0 +1,76 @@
+import com.example.droolsdemo.entity.Order;
+import com.example.droolsdemo.entity.Customer;
+
+
+rule "rules1"
+    when
+        eval(true);
+    then
+       System.out.println("Hello,World");
+end
+
+rule "rules2"
+when
+$order:Order();
+then
+System.out.println($order.getPrice());
+end
+
+rule "activa_test1"
+when
+eval(true)
+then
+System.out.println("activa_test1");
+end
+
+rule "aaaa_test1"
+when
+eval(true)
+then
+System.out.println("aaaa_test1");
+end
+
+
+function String hello(String name) {
+    return "Hello "+name+"!";
+}
+
+
+rule "rules1"
+    when
+        eval(true);
+    then
+       System.out.println(hello("hu"));
+end
+
+function Boolean namePd(String name) {
+    if ("hu".equals(name)){
+        return true;
+    }
+    return  false;
+}
+
+
+rule "rules1"
+    when
+        eval(namePd("hu"));
+    then
+       System.out.println("rules1");
+end
+
+rule "rules4"
+    when
+        $u:Customer(namePd(name)&& age>20);
+    then
+       System.out.println("rules1");
+end
+
+import com.example.droolsdemo.drfunction.TestFunction;
+
+rule "rules5"
+    when
+        eval(true)
+    then
+        TestFunction.test1("hu");
+        System.out.println(TestFunction.test2("hu"));
+end

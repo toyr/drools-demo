@@ -1,0 +1,10 @@
+import com.example.droolsdemo.entity.QueryParam
+
+dialect  "java"
+
+rule "girl"
+    when queryParam : QueryParam(paramId != null && paramSign.equals("-"))
+    then
+        System.out.println(queryParam.getParamId() +  "是女孩");
+        queryParam.setResult("我是个女孩");
+end

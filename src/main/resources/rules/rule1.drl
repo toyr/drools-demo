@@ -1,0 +1,14 @@
+import com.example.droolsdemo.entity.QueryParam
+import com.example.droolsdemo.servcie.RuleEngineService
+
+dialect  "java"
+
+rule "boy"
+    when queryParam : QueryParam(paramId != null && paramSign.equals("+"))
+    then
+        RuleEngineService ruleEngineService = new RuleEngineService();
+        ruleEngineService.executeAddRule(queryParam);
+        System.out.println("参数:getParamId="+queryParam.getParamId()+";getParamSign="+queryParam.getParamSign());
+        System.out.println(queryParam.getParamId() +  "是男孩");
+        queryParam.setResult("我是个男孩");
+end

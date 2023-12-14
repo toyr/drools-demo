@@ -1,0 +1,10 @@
+import com.example.droolsdemo.entity.QueryParam
+
+dialect  "java"
+
+rule "unknow"
+    when queryParam : QueryParam(paramId != null && paramSign.equals("unknow"))
+    then
+        System.out.println(queryParam.getParamId() +  "是unknow");
+        queryParam.setResult("{'code': 123, msy: '123'}");
+end
